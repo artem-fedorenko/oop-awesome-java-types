@@ -6,7 +6,7 @@
 
     <groupId>com.oop-awesome</groupId>
     <artifactId>java-types</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>master</version>
 
     <properties>
         <jar.finalName>opp-awesome-${project.name}-${project.version}</jar.finalName>
