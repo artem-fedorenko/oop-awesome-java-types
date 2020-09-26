@@ -1,0 +1,1 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=artem-fedorenko_oop-awesome-java-types&metric=alert_status)](https://sonarcloud.io/dashboard?id=artem-fedorenko_oop-awesome-java-types)
