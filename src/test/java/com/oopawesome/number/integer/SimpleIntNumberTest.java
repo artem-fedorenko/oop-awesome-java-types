@@ -1,11 +1,11 @@
-package com.oopawesome.number.medium;
+package com.oopawesome.number.integer;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static com.oopawesome.number.medium.SimpleMediumNumber.simpleMediumNumber;
+import static com.oopawesome.number.integer.SimpleIntNumber.simpleIntNumber;
 
-class SimpleMediumNumberTest {
+class SimpleIntNumberTest {
 
     @Test
     void shouldReturnUnchangedInteger() {
@@ -13,7 +13,7 @@ class SimpleMediumNumberTest {
         int originalInteger = 23;
 
         // when
-        int actualInteger = simpleMediumNumber(originalInteger).asInteger();
+        int actualInteger = simpleIntNumber(originalInteger).asInteger();
 
         // then
         Assertions.assertThat(actualInteger).isEqualTo(originalInteger);
