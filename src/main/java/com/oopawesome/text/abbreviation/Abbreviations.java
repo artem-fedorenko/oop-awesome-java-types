@@ -5,6 +5,9 @@ import com.oopawesome.text.Text;
 
 public final class Abbreviations {
 
+    private Abbreviations() {
+    }
+
     public static Text abbreviation(final Text textToAbbreviate, final IntNumber maxWidth) {
         return new NormalAbbreviation(textToAbbreviate, maxWidth);
     }
