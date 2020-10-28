@@ -1,5 +1,7 @@
 package com.oopawesome.text;
 
+import lombok.val;
+
 import java.util.stream.Stream;
 
 import org.assertj.core.api.Assertions;
@@ -15,7 +17,7 @@ class CapitalizedTextTest {
     @Test
     void shouldThrowExceptionIfNullString() {
         // when
-        final Throwable throwable = Assertions.catchThrowable(() -> new CapitalizedText(null));
+        val throwable = Assertions.catchThrowable(() -> new CapitalizedText(null));
 
         // then
         Assertions.assertThat(throwable).isNotNull();
@@ -25,7 +27,7 @@ class CapitalizedTextTest {
     @MethodSource("getShouldCapitalizeTextTestCases")
     void shouldCapitalizeText(Text textToCapitalize, Text expectedResult) {
         // when
-        final Text actualResult = new CapitalizedText(textToCapitalize);
+        val actualResult = new CapitalizedText(textToCapitalize);
 
         // then
         assertThat(actualResult.asString()).isEqualTo(expectedResult.asString());

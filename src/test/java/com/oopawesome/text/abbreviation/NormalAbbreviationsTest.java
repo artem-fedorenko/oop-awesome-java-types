@@ -1,5 +1,7 @@
 package com.oopawesome.text.abbreviation;
 
+import lombok.val;
+
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +22,7 @@ class NormalAbbreviationsTest {
     @MethodSource("getShouldThrowExceptionOnInvalidParametersTestCases")
     void shouldThrowExceptionOnInvalidParameters(Text textToAbbreviate, IntNumber maxWidth) {
         // when
-        final Throwable actualException = catchThrowable(() -> new NormalAbbreviation(textToAbbreviate, maxWidth).asString());
+        val actualException = catchThrowable(() -> new NormalAbbreviation(textToAbbreviate, maxWidth).asString());
 
         // then
         assertThat(actualException).isNotNull();
@@ -30,7 +32,7 @@ class NormalAbbreviationsTest {
     @MethodSource("getShouldAbbreviateTextTestCases")
     void shouldAbbreviateText(Text textToAbbreviate, IntNumber maxWidth, Text expectedResult) {
         // when
-        final Text actualResult = new NormalAbbreviation(textToAbbreviate, maxWidth);
+        val actualResult = new NormalAbbreviation(textToAbbreviate, maxWidth);
 
         // then
         assertThat(actualResult.asString()).isEqualTo(expectedResult.asString());

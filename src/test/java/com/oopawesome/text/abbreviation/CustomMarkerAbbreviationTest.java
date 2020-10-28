@@ -1,5 +1,7 @@
 package com.oopawesome.text.abbreviation;
 
+import lombok.val;
+
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +22,7 @@ class CustomMarkerAbbreviationTest {
     @MethodSource("getShouldThrowExceptionOnInvalidParametersTestCases")
     void shouldThrowExceptionOnInvalidParameters(Text textToAbbreviate, Text abbreviationMarker, IntNumber maxWidth) {
         // when
-        final Throwable actualException = catchThrowable(() -> new CustomMarkerAbbreviation(textToAbbreviate, abbreviationMarker, maxWidth).asString());
+        val actualException = catchThrowable(() -> new CustomMarkerAbbreviation(textToAbbreviate, abbreviationMarker, maxWidth).asString());
 
         // then
         assertThat(actualException).isNotNull();
@@ -30,7 +32,7 @@ class CustomMarkerAbbreviationTest {
     @MethodSource("getShouldAbbreviateTextTestCases")
     void shouldAbbreviateText(Text textToAbbreviate, Text abbreviationMarker, IntNumber maxWidth, Text expectedResult) {
         // when
-        final Text actualResult = new CustomMarkerAbbreviation(textToAbbreviate, abbreviationMarker, maxWidth);
+        val actualResult = new CustomMarkerAbbreviation(textToAbbreviate, abbreviationMarker, maxWidth);
 
         // then
         assertThat(actualResult.asString()).isEqualTo(expectedResult.asString());

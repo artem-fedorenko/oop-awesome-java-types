@@ -1,5 +1,7 @@
 package com.oopawesome.text;
 
+import lombok.val;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,7 @@ class PlainTextTest {
     @Test
     void shouldThrowExceptionIfNullString() {
         // when
-        final Throwable throwable = Assertions.catchThrowable(() -> new PlainText(null));
+        val throwable = Assertions.catchThrowable(() -> new PlainText(null));
 
         // then
         Assertions.assertThat(throwable).isNotNull();
@@ -17,10 +19,10 @@ class PlainTextTest {
     @Test
     void shouldReturnUnchangedString() {
         // given
-        String originalString = "some string";
+        val originalString = "some string";
 
         // when
-        String actualString = new PlainText(originalString).asString();
+        val actualString = new PlainText(originalString).asString();
 
         // then
         Assertions.assertThat(actualString).isEqualTo(originalString);

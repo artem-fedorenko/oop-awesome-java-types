@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Value;
+import lombok.val;
 
 @Value
 @Getter(AccessLevel.NONE)
@@ -31,7 +32,7 @@ public class CapitalizedText implements Text {
     }
 
     private char getFirstCharCapitalized(final Text textToCapitalize) {
-        final char firstChar = textToCapitalize.asString().charAt(0);
+        val firstChar = textToCapitalize.asString().charAt(0);
         return Character.toTitleCase(firstChar);
     }
 
