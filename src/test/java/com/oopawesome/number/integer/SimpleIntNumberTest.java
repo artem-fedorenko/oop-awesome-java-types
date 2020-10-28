@@ -3,8 +3,6 @@ package com.oopawesome.number.integer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static com.oopawesome.number.integer.SimpleIntNumber.simpleIntNumber;
-
 class SimpleIntNumberTest {
 
     @Test
@@ -13,7 +11,7 @@ class SimpleIntNumberTest {
         int originalInteger = 23;
 
         // when
-        int actualInteger = simpleIntNumber(originalInteger).asInteger();
+        int actualInteger = new SimpleIntNumber(originalInteger).asInteger();
 
         // then
         Assertions.assertThat(actualInteger).isEqualTo(originalInteger);

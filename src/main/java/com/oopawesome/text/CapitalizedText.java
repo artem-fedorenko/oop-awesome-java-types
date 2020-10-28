@@ -1,19 +1,15 @@
 package com.oopawesome.text;
 
-import com.google.common.base.Preconditions;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Value;
 
-public final class CapitalizedText implements Text {
+@Value
+@Getter(AccessLevel.NONE)
+public class CapitalizedText implements Text {
 
-    private final Text textToCapitalize;
-
-    private CapitalizedText(final Text textToCapitalize) {
-        Preconditions.checkNotNull(textToCapitalize, "Argument 'textToCapitalize' cannot be null");
-        this.textToCapitalize = textToCapitalize;
-    }
-
-    public static Text capitalizedText(final Text textToCapitalize) {
-        return new CapitalizedText(textToCapitalize);
-    }
+    @NonNull Text textToCapitalize;
 
     @Override
     public String asString() {

@@ -1,16 +1,16 @@
 package com.oopawesome.text.abbreviation;
 
-import com.oopawesome.number.integer.IntNumber;
-import com.oopawesome.text.Text;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
+import com.oopawesome.number.integer.IntNumber;
+import com.oopawesome.number.integer.SimpleIntNumber;
+import com.oopawesome.text.PlainText;
+import com.oopawesome.text.Text;
 
-import static com.oopawesome.number.integer.SimpleIntNumber.simpleIntNumber;
-import static com.oopawesome.text.PlainText.plainText;
-import static com.oopawesome.text.abbreviation.Abbreviations.abbreviation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
@@ -20,7 +20,7 @@ class NormalAbbreviationsTest {
     @MethodSource("getShouldThrowExceptionOnInvalidParametersTestCases")
     void shouldThrowExceptionOnInvalidParameters(Text textToAbbreviate, IntNumber maxWidth) {
         // when
-        final Throwable actualException = catchThrowable(() -> abbreviation(textToAbbreviate, maxWidth));
+        final Throwable actualException = catchThrowable(() -> new NormalAbbreviation(textToAbbreviate, maxWidth).asString());
 
         // then
         assertThat(actualException).isNotNull();
@@ -30,7 +30,7 @@ class NormalAbbreviationsTest {
     @MethodSource("getShouldAbbreviateTextTestCases")
     void shouldAbbreviateText(Text textToAbbreviate, IntNumber maxWidth, Text expectedResult) {
         // when
-        final Text actualResult = abbreviation(textToAbbreviate, maxWidth);
+        final Text actualResult = new NormalAbbreviation(textToAbbreviate, maxWidth);
 
         // then
         assertThat(actualResult.asString()).isEqualTo(expectedResult.asString());
@@ -39,9 +39,9 @@ class NormalAbbreviationsTest {
     private static Stream<Arguments> getShouldThrowExceptionOnInvalidParametersTestCases() {
         //@formatter:off
         return Stream.of(
-                Arguments.of(null, simpleIntNumber(4)),
-                Arguments.of(plainText("some text"), null),
-                Arguments.of(plainText("some text"), simpleIntNumber(3))
+                Arguments.of(null, new SimpleIntNumber(4)),
+                Arguments.of(new PlainText("some text"), null),
+                Arguments.of(new PlainText("some text"), new SimpleIntNumber(3))
         );
         //@formatter:on
     }
@@ -49,11 +49,11 @@ class NormalAbbreviationsTest {
     private static Stream<Arguments> getShouldAbbreviateTextTestCases() {
         //@formatter:off
         return Stream.of(
-                Arguments.of(plainText(""), simpleIntNumber(4), plainText("")),
-                Arguments.of(plainText("abcdefg"), simpleIntNumber(6), plainText("abc...")),
-                Arguments.of(plainText("abcdefg"), simpleIntNumber(7), plainText("abcdefg")),
-                Arguments.of(plainText("abcdefg"), simpleIntNumber(8), plainText("abcdefg")),
-                Arguments.of(plainText("abcdefg"), simpleIntNumber(4), plainText("a..."))
+                Arguments.of(new PlainText(""), new SimpleIntNumber(4), new PlainText("")),
+                Arguments.of(new PlainText("abcdefg"), new SimpleIntNumber(6), new PlainText("abc...")),
+                Arguments.of(new PlainText("abcdefg"), new SimpleIntNumber(7), new PlainText("abcdefg")),
+                Arguments.of(new PlainText("abcdefg"), new SimpleIntNumber(8), new PlainText("abcdefg")),
+                Arguments.of(new PlainText("abcdefg"), new SimpleIntNumber(4), new PlainText("a..."))
         );
         //@formatter:on
     }

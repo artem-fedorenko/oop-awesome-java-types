@@ -1,19 +1,15 @@
 package com.oopawesome.text;
 
-import com.google.common.base.Preconditions;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Value;
 
-public final class PlainText implements Text {
+@Value
+@Getter(AccessLevel.NONE)
+public class PlainText implements Text {
 
-    private final String text;
-
-    private PlainText(final String text) {
-        Preconditions.checkNotNull(text, "Argument 'text' cannot be null");
-        this.text = text;
-    }
-
-    public static Text plainText(final String text) {
-        return new PlainText(text);
-    }
+    @NonNull String text;
 
     @Override
     public String asString() {

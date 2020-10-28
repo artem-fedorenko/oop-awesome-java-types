@@ -1,16 +1,16 @@
 package com.oopawesome.text.abbreviation;
 
-import com.oopawesome.number.integer.IntNumber;
-import com.oopawesome.text.Text;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
+import com.oopawesome.number.integer.IntNumber;
+import com.oopawesome.number.integer.SimpleIntNumber;
+import com.oopawesome.text.PlainText;
+import com.oopawesome.text.Text;
 
-import static com.oopawesome.number.integer.SimpleIntNumber.simpleIntNumber;
-import static com.oopawesome.text.PlainText.plainText;
-import static com.oopawesome.text.abbreviation.Abbreviations.abbreviation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
@@ -20,7 +20,7 @@ class CustomMarkerAbbreviationTest {
     @MethodSource("getShouldThrowExceptionOnInvalidParametersTestCases")
     void shouldThrowExceptionOnInvalidParameters(Text textToAbbreviate, Text abbreviationMarker, IntNumber maxWidth) {
         // when
-        final Throwable actualException = catchThrowable(() -> abbreviation(textToAbbreviate, abbreviationMarker, maxWidth));
+        final Throwable actualException = catchThrowable(() -> new CustomMarkerAbbreviation(textToAbbreviate, abbreviationMarker, maxWidth).asString());
 
         // then
         assertThat(actualException).isNotNull();
@@ -30,7 +30,7 @@ class CustomMarkerAbbreviationTest {
     @MethodSource("getShouldAbbreviateTextTestCases")
     void shouldAbbreviateText(Text textToAbbreviate, Text abbreviationMarker, IntNumber maxWidth, Text expectedResult) {
         // when
-        final Text actualResult = abbreviation(textToAbbreviate, abbreviationMarker, maxWidth);
+        final Text actualResult = new CustomMarkerAbbreviation(textToAbbreviate, abbreviationMarker, maxWidth);
 
         // then
         assertThat(actualResult.asString()).isEqualTo(expectedResult.asString());
@@ -39,10 +39,10 @@ class CustomMarkerAbbreviationTest {
     private static Stream<Arguments> getShouldThrowExceptionOnInvalidParametersTestCases() {
         //@formatter:off
         return Stream.of(
-                Arguments.of(null, plainText("."), simpleIntNumber(4)),
-                Arguments.of(plainText("some text"), null, simpleIntNumber(4)),
-                Arguments.of(plainText("some text"), plainText("."), null),
-                Arguments.of(plainText("some short text"), plainText("some long abbreviation marker"), simpleIntNumber(3))
+                Arguments.of(null, new PlainText("."), new SimpleIntNumber(4)),
+                Arguments.of(new PlainText("some text"), null, new SimpleIntNumber(4)),
+                Arguments.of(new PlainText("some text"), new PlainText("."), null),
+                Arguments.of(new PlainText("some short text"), new PlainText("some long abbreviation marker"), new SimpleIntNumber(3))
         );
         //@formatter:on
     }
@@ -50,12 +50,12 @@ class CustomMarkerAbbreviationTest {
     private static Stream<Arguments> getShouldAbbreviateTextTestCases() {
         //@formatter:off
         return Stream.of(
-                Arguments.of(plainText(""), plainText("..."), simpleIntNumber(4), plainText("")),
-                Arguments.of(plainText("abcdefg"), plainText("."), simpleIntNumber(5), plainText("abcd.")),
-                Arguments.of(plainText("abcdefg"), plainText("."), simpleIntNumber(7), plainText("abcdefg")),
-                Arguments.of(plainText("abcdefg"), plainText("."), simpleIntNumber(8), plainText("abcdefg")),
-                Arguments.of(plainText("abcdefg"), plainText(".."), simpleIntNumber(4), plainText("ab..")),
-                Arguments.of(plainText("abcdefg"), plainText(".."), simpleIntNumber(3), plainText("a.."))
+                Arguments.of(new PlainText(""), new PlainText("..."), new SimpleIntNumber(4), new PlainText("")),
+                Arguments.of(new PlainText("abcdefg"), new PlainText("."), new SimpleIntNumber(5), new PlainText("abcd.")),
+                Arguments.of(new PlainText("abcdefg"), new PlainText("."), new SimpleIntNumber(7), new PlainText("abcdefg")),
+                Arguments.of(new PlainText("abcdefg"), new PlainText("."), new SimpleIntNumber(8), new PlainText("abcdefg")),
+                Arguments.of(new PlainText("abcdefg"), new PlainText(".."), new SimpleIntNumber(4), new PlainText("ab..")),
+                Arguments.of(new PlainText("abcdefg"), new PlainText(".."), new SimpleIntNumber(3), new PlainText("a.."))
         );
         //@formatter:on
     }

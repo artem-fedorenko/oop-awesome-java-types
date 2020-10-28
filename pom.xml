@@ -9,17 +9,28 @@
     <version>master-SNAPSHOT</version>
 
     <properties>
-        <jar.finalName>opp-awesome-${project.name}-${project.version}</jar.finalName>
+        <!--Maven Build-->
+        <java.version>11</java.version>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.7.0</junit.version>
-        <guava.version>29.0-jre</guava.version>
-        <assertj-core.version>3.17.2</assertj-core.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jar.finalName>opp-awesome-${project.name}-${project.version}</jar.finalName>
+
+        <!--SONAR-->
         <sonar.projectKey>artem-fedorenko_oop-awesome-java-types</sonar.projectKey>
         <sonar.organization>artem-fedorenko-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+
+        <!--Dependency Versions-->
+        <guava.version>29.0-jre</guava.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
+        <lombok.version>1.18.16</lombok.version>
+
+        <!--Test Dependency Versions-->
+        <junit.version>5.7.0</junit.version>
+        <assertj-core.version>3.17.2</assertj-core.version>
     </properties>
 
     <dependencies>
@@ -31,7 +42,13 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.11</version>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
 

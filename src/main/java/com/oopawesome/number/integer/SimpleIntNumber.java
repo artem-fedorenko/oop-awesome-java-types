@@ -1,19 +1,18 @@
 package com.oopawesome.number.integer;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Value;
+
+@Value
+@Getter(AccessLevel.NONE)
 public class SimpleIntNumber implements IntNumber {
 
-    private final int intNumber;
-
-    private SimpleIntNumber(final int intNumber) {
-        this.intNumber = intNumber;
-    }
-
-    public static IntNumber simpleIntNumber(final int intNumber) {
-        return new SimpleIntNumber(intNumber);
-    }
+    @NonNull Integer intNumber;
 
     @Override
-    public int asInteger() {
+    public Integer asInteger() {
         return intNumber;
     }
 }
