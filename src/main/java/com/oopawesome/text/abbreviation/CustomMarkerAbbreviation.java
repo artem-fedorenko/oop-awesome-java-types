@@ -1,13 +1,12 @@
 package com.oopawesome.text.abbreviation;
 
+import com.google.common.base.Preconditions;
+import com.oopawesome.number.integer.IntNumber;
+import com.oopawesome.text.Text;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Value;
-
-import com.google.common.base.Preconditions;
-import com.oopawesome.number.integer.IntNumber;
-import com.oopawesome.text.Text;
 
 @Value
 @Getter(AccessLevel.NONE)
@@ -27,8 +26,10 @@ public class CustomMarkerAbbreviation implements Text {
     }
 
     private void checkPreconditions() {
-        Preconditions.checkArgument(maxWidth.asInteger() >= abbreviationMarker.asString().length() + 1,
-            "Argument 'maxWidth' must be at least abbreviationMarker.length + 1");
+        Preconditions.checkArgument(
+                maxWidth.asInteger() >= abbreviationMarker.asString().length() + 1,
+                "Argument 'maxWidth' must be at least abbreviationMarker.length + 1"
+        );
     }
 
     private boolean isAbbreviationNeeded() {

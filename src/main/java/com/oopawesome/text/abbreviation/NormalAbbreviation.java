@@ -1,14 +1,13 @@
 package com.oopawesome.text.abbreviation;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Value;
-
 import com.google.common.base.Preconditions;
 import com.oopawesome.number.integer.IntNumber;
 import com.oopawesome.text.PlainText;
 import com.oopawesome.text.Text;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Value;
 
 @Value
 @Getter(AccessLevel.NONE)

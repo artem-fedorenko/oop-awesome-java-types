@@ -1,10 +1,6 @@
 package com.oopawesome.text;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Value;
-import lombok.val;
+import lombok.*;
 
 @Value
 @Getter(AccessLevel.NONE)

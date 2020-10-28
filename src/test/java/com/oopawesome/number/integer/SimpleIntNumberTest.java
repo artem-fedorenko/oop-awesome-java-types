@@ -1,7 +1,6 @@
 package com.oopawesome.number.integer;
 
 import lombok.val;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

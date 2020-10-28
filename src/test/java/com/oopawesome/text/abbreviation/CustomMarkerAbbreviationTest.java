@@ -1,17 +1,15 @@
 package com.oopawesome.text.abbreviation;
 
-import lombok.val;
-
-import java.util.stream.Stream;
-
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import com.oopawesome.number.integer.IntNumber;
 import com.oopawesome.number.integer.SimpleIntNumber;
 import com.oopawesome.text.PlainText;
 import com.oopawesome.text.Text;
+import lombok.val;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
